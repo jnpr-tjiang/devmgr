@@ -18,7 +18,8 @@ requirements = [
     'flask-restful',
     'flask-sqlalchemy',
     'flask-marshmallow',
-    'marshmallow-sqlalchemy'
+    'marshmallow-sqlalchemy',
+    'python-dotenv'
 ]
 
 test_requirements = [
@@ -37,6 +38,15 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
     include_package_data=True,
     install_requires=requirements,
+    extras_require={
+        'dotenv': ['python-dotenv'],
+        'dev': [
+            'pytest>=3',
+            'coverage',
+            'tox',
+            'flake8'
+        ]
+    },
     license="MIT",
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

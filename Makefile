@@ -5,6 +5,7 @@ help:
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-test - remove test and coverage artifacts"
+	@echo "devenv - install python packages needed for dev"
 	@echo "lint - check style with flake8"
 	@echo "test - run tests quickly with the default Python"
 	@echo "test-all - run tests on every Python version with tox"
@@ -34,22 +35,27 @@ clean-test:
 	rm -f .coverage
 	rm -fr htmlcov/
 
-lint:
+devenv: install-dev
+
+install-dev:
+	pip install -q -e .[dev]
+
+lint: clean-pyc install-dev
 	flake8 devmgr tests
 
-test:
+test: clean-pyc install-dev
 	python setup.py test
 
-test-all:
+test-all: install-dev
 	tox
 
-coverage:
+coverage: clean-pyc install-dev
 	coverage run --source devmgr setup.py test
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
 
-docs:
+docs: clean-pyc install-dev
 	rm -f docs/devmgr.rst
 	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ devmgr
