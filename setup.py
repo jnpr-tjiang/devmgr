@@ -1,7 +1,4 @@
 """A setuptools based setup module for devmgr"""
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from codecs import open
 from os import path
 from setuptools import setup, find_packages
