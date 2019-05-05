@@ -6,4 +6,3 @@ __author__ = 'Tong Jiang'
 __email__ = 'tong.jiang@gmail.com'
 __version__ = get_versions()['version']
 del get_versions
-

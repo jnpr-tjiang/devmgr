@@ -17,12 +17,16 @@ with open(path.join(here, 'HISTORY.rst'), encoding='utf-8') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
 requirements = [
-    # TODO: put package requirements here
-    'click',
+    'flask',
+    'flask-restful',
+    'flask-sqlalchemy',
+    'flask-marshmallow',
+    'marshmallow-sqlalchemy'
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'pytest',
+    'tox'
 ]
 
 setup(
@@ -35,11 +39,6 @@ setup(
     author_email='tong.jiang@gmail.com',
     url='https://github.com/jnpr-tjiang/devmgr',
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    entry_points={
-        'console_scripts':[
-            'devmgr=devmgr.cli:cli',
-            ],
-        },
     include_package_data=True,
     install_requires=requirements,
     license="MIT",
@@ -57,4 +56,9 @@ setup(
     ],
     test_suite='tests',
     tests_require=test_requirements,
+    entry_points={
+        'console_scripts': [
+            'devmgr=devmgr.cli:cli',
+        ],
+    },
 )
