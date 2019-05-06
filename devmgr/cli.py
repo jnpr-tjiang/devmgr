@@ -19,7 +19,8 @@ def init():
     """
     from devmgr.extensions import db
     from devmgr import models
-    click.echo("create devmgr database")
+
+    click.echo("Creating devmgr database tables ...")
     db.create_all()
     click.echo("Done")
 
