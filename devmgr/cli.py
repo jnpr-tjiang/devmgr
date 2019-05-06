@@ -1,8 +1,28 @@
 import click
+from flask.cli import FlaskGroup
 
-@click.command()
+from devmgr.app import create_app
+
+
+def create_devmgr(info):
+    return create_app(cli=True)
+
+
+@click.group(cls=FlaskGroup, create_app=create_devmgr)
 def cli():
-    click.echo("Hello, World!")
+    """Main entry point"""
+
+
+@cli.command("init")
+def init():
+    """Initialize devmgr app, create database tables and
+    """
+    from devmgr.extensions import db
+
+    click.echo("Creating devmgr database tables ...")
+    db.create_all()
+    click.echo("Done")
+
 
 if __name__ == '__main__':
     cli()
