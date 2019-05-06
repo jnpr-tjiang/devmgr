@@ -23,7 +23,7 @@ class Device(db.Model):
         'Label', secondary=device_labels, lazy='subquery', backref=db.backref('devices', lazy=True)
     )
     annotations = db.relationship(
-        'Annotation', secondary=device_annotations, lazy='subquery', backref=db.backref('devices', laze=True)
+        'Annotation', secondary=device_annotations, lazy='subquery', backref=db.backref('devices', lazy=True)
     )
 
     def __repr__(self):
