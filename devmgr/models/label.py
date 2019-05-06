@@ -2,8 +2,8 @@ from devmgr.extensions import db
 
 
 class Label(db.Model):
-    """Key-value labels to search config objects. Both key and value are indexed and
-    key-value pair must be unique.
+    """Key-value labels to search config objects. Both key and value are
+    indexed and key-value pair must be unique.
     """
     __table_args__ = (
         db.UniqueConstraint('name', 'value', name='unique_key_value'),

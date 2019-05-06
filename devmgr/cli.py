@@ -18,7 +18,6 @@ def init():
     """Initialize devmgr app, create database tables and
     """
     from devmgr.extensions import db
-    from devmgr import models
 
     click.echo("Creating devmgr database tables ...")
     db.create_all()
