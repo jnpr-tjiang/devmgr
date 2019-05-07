@@ -24,6 +24,9 @@ requirements = [
 
 test_requirements = [
     'pytest',
+    'pytest-flask',
+    # 'pytest-factoryboy',
+    # 'pytest-runner'
 ]
 
 setup(
@@ -44,7 +47,8 @@ setup(
             'pytest>=3',
             'coverage',
             'tox',
-            'flake8'
+            'flake8',
+            'pytest-flask',
         ]
     },
     license="MIT",

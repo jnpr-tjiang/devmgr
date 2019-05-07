@@ -7,7 +7,7 @@ class Annotation(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
-    value = db.Column(db.Binary)
+    value = db.Column(db.Text)
 
     def __repr__(self):
         return '<Annotation %s>' % self.name

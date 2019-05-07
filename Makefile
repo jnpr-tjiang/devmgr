@@ -44,7 +44,7 @@ lint: clean-pyc install-dev
 	flake8 devmgr tests
 
 test: clean-pyc install-dev
-	python setup.py test
+	pytest
 
 test-all: install-dev
 	tox
