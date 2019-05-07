@@ -44,7 +44,7 @@ setup(
     extras_require={
         'dotenv': ['python-dotenv'],
         'dev': [
-            'pytest>=3',
+            'pytest>=3.6',
             'coverage',
             'tox',
             'flake8',
