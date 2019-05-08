@@ -1,9 +1,10 @@
-from .device import Device
+from .device import Device, device_labels
 from .label import Label
 from .annotation import Annotation
 
 __all__ = [
     'Device',
     'Label',
-    'Annotation'
+    'Annotation',
+    'device_labels',
 ]
