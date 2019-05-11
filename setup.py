@@ -24,6 +24,9 @@ requirements = [
 
 test_requirements = [
     'pytest',
+    'pytest-flask',
+    # 'pytest-factoryboy',
+    # 'pytest-runner'
 ]
 
 setup(
@@ -41,10 +44,11 @@ setup(
     extras_require={
         'dotenv': ['python-dotenv'],
         'dev': [
-            'pytest>=3',
+            'pytest>=3.6',
             'coverage',
             'tox',
-            'flake8'
+            'flake8',
+            'pytest-flask',
         ]
     },
     license="MIT",
@@ -56,9 +60,8 @@ setup(
         "Programming Language :: Python :: 2",
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
     ],
     test_suite='tests',
     tests_require=test_requirements,

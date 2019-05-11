@@ -1,15 +1,23 @@
 from flask import request
 from flask_restful import Resource
+from sqlalchemy.exc import IntegrityError
 
-from devmgr.models import Device
+from devmgr.models import Device, Annotation, Label
 from devmgr.extensions import ma, db
 from devmgr.common.pagination import paginate
 
 
+class AnnotationSchema(ma.ModelSchema):
+    class Meta:
+        model = Annotation
+        fields = ['name', 'value']
+
+
 class DeviceSchema(ma.ModelSchema):
+    annotations = ma.Nested(AnnotationSchema, many=True)
+
     class Meta:
         model = Device
-        sqla_session = db.session
 
 
 class DeviceResource(Resource):
@@ -61,9 +69,12 @@ class DeviceList(Resource):
         device, errors = schema.load(request.json)
         if errors:
             return errors, 422
-
-        db.session.add(device)
-        db.session.commit()
+        try:
+            db.session.add(device)
+            db.session.commit()
+        except IntegrityError as ex:
+            db.session.rollback()
+            return {'msg': str(ex)}, 422
 
         return {
             'msg': 'Device %s created' % device.name,

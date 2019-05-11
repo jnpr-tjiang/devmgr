@@ -10,17 +10,6 @@ device_labels = db.Table(
     )
 )
 
-device_annotations = db.Table(
-    'device_annotations',
-    db.Column(
-        'annotation_id', db.Integer,
-        db.ForeignKey('annotation.id'), primary_key=True
-    ),
-    db.Column(
-        'device_id', db.Integer, db.ForeignKey('device.id'), primary_key=True
-    )
-)
-
 
 class Device(db.Model):
     """Device data model
@@ -32,10 +21,7 @@ class Device(db.Model):
         'Label', secondary=device_labels, lazy='subquery',
         backref=db.backref('devices', lazy=True)
     )
-    annotations = db.relationship(
-        'Annotation', secondary=device_annotations, lazy='subquery',
-        backref=db.backref('devices', lazy=True)
-    )
+    annotations = db.relationship('Annotation', backref='device', lazy=True)
 
     def __repr__(self):
         return "<Device %s (sn=%s)>" % (self.name, self.serial)

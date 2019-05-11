@@ -13,7 +13,7 @@ def cli():
     """Main entry point"""
 
 
-@cli.command("init")
+@cli.command()
 def init():
     """Initialize devmgr app, create database tables and
     """
@@ -21,8 +21,13 @@ def init():
 
     click.echo("Creating devmgr database tables ...")
     db.create_all()
+    from sqlalchemy.schema import CreateTable
+    from devmgr.models import Device, device_labels, Annotation, Label
+    click.echo(CreateTable(Device.__table__).compile())
+    click.echo(CreateTable(Annotation.__table__).compile())
+    click.echo(CreateTable(Label.__table__).compile())
+    click.echo(CreateTable(device_labels).compile())
     click.echo("Done")
-
 
 if __name__ == '__main__':
     cli()
